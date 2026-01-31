@@ -3,10 +3,8 @@ from constants import *
 from logger import log_state
 from player import *
 
-
-
 def main():
-
+    #init vars
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
@@ -25,6 +23,8 @@ def main():
             if event.type == pygame.QUIT:
                 return
         log_state()
+        p1.update(dt)
+
         screen.fill("black")
         
         p1.draw(screen)
