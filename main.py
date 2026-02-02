@@ -37,15 +37,17 @@ def main():
                 return
         log_state()
         updatable.update(dt)
+        #collision betweeen player and asteroids
         for a in asteroids:
             if a.collides_with(p1):
                 log_event("player_hit")
                 print("Game over!")
                 sys.exit()
+            #collision between shots and asteroids
             for s in shots:
                 if a.collides_with(s):
                     log_event("asteroid_shot")
-                    a.kill()
+                    a.split()
                     s.kill()
         screen.fill("black")
         for items in drawable:
