@@ -1,6 +1,7 @@
 import pygame
+import sys
 from constants import *
-from logger import log_state
+from logger import log_state, log_event
 from player import *
 from asteroidfield import *
 from asteroid import *
@@ -31,10 +32,15 @@ def main():
                 return
         log_state()
         updatable.update(dt)
-        
+        for a in asteroids:
+            if a.collides_with(p1):
+                log_event("player_hit")
+                print("Game over!")
+                sys.exit()
         screen.fill("black")
         for items in drawable:
-            items.draw(screen)        
+            items.draw(screen)
+                
         pygame.display.flip()
         dt = (clock.tick(60)/1000)
 
